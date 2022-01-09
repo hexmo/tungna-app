@@ -1,13 +1,13 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, Alert } from 'react-native';
+import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
 
 import logo from '../assets/logo.jpeg';
 
-const Login = () => {
+const Login = ({ navigation }) => {
 
   const handleSignInPressed = () => {
-    Alert.alert('Hello');
+    navigation.navigate('Home');
   };
 
   return (
@@ -38,7 +38,9 @@ const Login = () => {
         onPress={handleSignInPressed}
       >Sign In</Button>
 
-      <Text style={styles.text}>Do not have account? Sign Up.</Text>
+      <Pressable onPress={() => navigation.navigate('SignUp')}>
+        <Text style={styles.text}>Do not have account? Sign Up.</Text>
+      </Pressable>
     </View>
   );
 };
