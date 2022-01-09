@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
   },
   button: {
     marginVertical: 5,
-    height: 50,
+    paddingVertical: 10
   },
   text: {
     marginTop: 20,
