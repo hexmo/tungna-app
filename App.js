@@ -1,15 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
 import { Provider as PaperProvider, DefaultTheme } from 'react-native-paper';
 import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
-import Login from './screens/Login';
-import SignUp from './screens/SignUp';
+import Router from './Router';
 
 
 export default function App() {
   return (
     <PaperProvider theme={theme}>
       <View style={styles.container}>
-        <SignUp/>
+        <Router/>
       </View>
     </PaperProvider>
   );
