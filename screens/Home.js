@@ -1,18 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Searchbar } from "react-native-paper";
+import { SliderBox } from "react-native-image-slider-box";
+
+import sliderImages from "../data/sliderImages";
 
 export default function Home() {
+  const [sliderImagesList] = useState(sliderImages);
+
   return (
-    <View style={styles.home}>
-      <Searchbar placeholder="Search" />
+    <View>
+      <Searchbar placeholder="Search" style={styles.searchBar} />
+      <SliderBox images={sliderImagesList} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  home: {
-    marginTop: 10,
-    marginHorizontal: 10,
+  searchBar: {
+    margin: 10,
   },
 });
