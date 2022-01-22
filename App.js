@@ -1,6 +1,5 @@
-import { StatusBar } from 'expo-status-bar';
 import { Provider as PaperProvider, DefaultTheme } from 'react-native-paper';
-import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
+import { StyleSheet, View, StatusBar } from 'react-native';
 import Router from './Router';
 
 
@@ -8,7 +7,8 @@ export default function App() {
   return (
     <PaperProvider theme={theme}>
       <View style={styles.container}>
-        <Router/>
+        <StatusBar style="light" backgroundColor="#e49314"/>
+        <Router />
       </View>
     </PaperProvider>
   );
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-  },
+  }
 });
 
 const theme = {
