@@ -11,7 +11,12 @@ export default function Home() {
   return (
     <View>
       <Searchbar placeholder="Search" style={styles.searchBar} />
-      <SliderBox images={sliderImagesList} />
+      <SliderBox
+        images={sliderImagesList}
+        dotColor="#e49314"
+        autoplay
+        circleLoop
+      />
     </View>
   );
 }
