@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Image, Alert, Pressable } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
 
-import logo from '../assets/logo.jpeg';
+import logo from '../assets/logo.png';
 
 const SignUp = ({ navigation }) => {
 
