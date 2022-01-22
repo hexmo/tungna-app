@@ -7,7 +7,7 @@ import logo from '../assets/logo.png';
 const Login = ({ navigation }) => {
 
   const handleSignInPressed = () => {
-    navigation.navigate('Home');
+    navigation.navigate('Main');
   };
 
   return (

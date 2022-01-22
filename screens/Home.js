@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 export default function Home() {
   return (
     <View style={styles.home}>
-      <Text>I am in Home</Text>
+      <Text>This is home component</Text>
     </View>
   );
 }
