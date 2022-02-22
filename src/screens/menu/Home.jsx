@@ -1,22 +1,15 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, ScrollView, View } from "react-native";
 import { Searchbar } from "react-native-paper";
-import { SliderBox } from "react-native-image-slider-box";
 
-import sliderImages from "../../../data/sliderImages";
+import HomePageCarousel from "../../components/HomePageCarousel";
 
 export default function Home() {
-  const [sliderImagesList] = useState(sliderImages);
-
   return (
     <View>
       <Searchbar placeholder="Search" style={styles.searchBar} />
-      <SliderBox
-        images={sliderImagesList}
-        dotColor="#e49314"
-        autoplay
-        circleLoop
-      />
+      <ScrollView>
+        <HomePageCarousel />
+      </ScrollView>
     </View>
   );
 }
