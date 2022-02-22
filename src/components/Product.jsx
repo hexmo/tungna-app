@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import { Button } from "react-native-paper";
 
 const Product = () => {
   return (
-    <View>
+    <View style={styles.product}>
       <Text>Product</Text>
     </View>
   );
@@ -11,4 +11,8 @@ const Product = () => {
 
 export default Product;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  product: {
+    padding: 20,
+  },
+});
