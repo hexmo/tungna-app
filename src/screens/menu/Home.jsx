@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { Searchbar } from "react-native-paper";
 import { SliderBox } from "react-native-image-slider-box";
 
-import sliderImages from "../data/sliderImages";
+import sliderImages from "../../../data/sliderImages";
 
 export default function Home() {
   const [sliderImagesList] = useState(sliderImages);
