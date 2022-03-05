@@ -1,11 +1,21 @@
-import { StyleSheet, Text, View } from 'react-native';
-import React from 'react';
+import { StyleSheet, ScrollView } from "react-native";
+import React, { useState } from "react";
+import Category from "../../components/Category";
+import productCategories from "../../../data/categories";
 
 const Categories = () => {
+  const [categories] = useState(productCategories);
+
   return (
-    <View>
-      <Text>You will see categorie here</Text>
-    </View>
+    <ScrollView>
+      {categories.map((category) => (
+        <Category
+          name={category.name}
+          image={category.image}
+          key={category.name}
+        />
+      ))}
+    </ScrollView>
   );
 };
 
