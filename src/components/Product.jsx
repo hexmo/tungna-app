@@ -4,7 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 
 import GuitarImage from "../../assets/product-mock-images/guitar.jpg";
 
-const productWidth = Dimensions.get("window").width * 0.4;
+const productWidth = Dimensions.get("window").width * 0.48;
 
 const Product = () => {
   const navigation = useNavigation();
@@ -18,7 +18,7 @@ const Product = () => {
   };
 
   return (
-    <Card style={styles.card} onPress={handleClick}>
+    <Card onPress={handleClick} style={{ width: productWidth, margin: 3 }}>
       <Card.Cover source={GuitarImage} style={styles.cardImage} />
       <Card.Content>
         <Subheading>Acoustic guitar</Subheading>
@@ -31,12 +31,7 @@ const Product = () => {
 export default Product;
 
 const styles = StyleSheet.create({
-  card: {
-    width: productWidth,
-    marginRight: 10,
-  },
   cardImage: {
-    width: productWidth,
-    height: productWidth,
+    // width: "100%",
   },
 });

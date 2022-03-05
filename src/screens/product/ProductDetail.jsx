@@ -6,6 +6,8 @@ import {
   Dimensions,
   Alert,
 } from "react-native";
+
+import { useEffect } from "react";
 import { SliderBox } from "react-native-image-slider-box";
 
 import { Button, Subheading, Title, Paragraph } from "react-native-paper";
@@ -15,7 +17,9 @@ const ProductDetail = ({ navigation, route }) => {
 
   const deviceWidth = Dimensions.get("window").width;
 
-  navigation.setOptions({ title: name });
+  useEffect(() => {
+    navigation.setOptions({ title: name });
+  }, []);
 
   const addToCartHandler = () => {
     Alert.alert("", "Do you really want to add this item to card?", [
