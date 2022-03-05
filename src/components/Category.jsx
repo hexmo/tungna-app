@@ -1,10 +1,18 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
 import { Card } from "react-native-paper";
+import { useNavigation } from "@react-navigation/native";
 
 const Category = ({ name, image }) => {
+  const navigation = useNavigation();
+
+  const handleClick = () => {
+    navigation.navigate("ProductsList", {
+      key: name,
+    });
+  };
+
   return (
-    <Card style={styles.card}>
+    <Card style={styles.card} onPress={handleClick}>
       <Card.Cover source={image} resizeMode={"stretch"} />
     </Card>
   );

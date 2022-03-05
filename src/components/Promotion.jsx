@@ -1,12 +1,20 @@
 import { StyleSheet, Text, View, Pressable, ScrollView } from "react-native";
 import { Feather } from "@expo/vector-icons";
-
 import Product from "./Product";
+import { useNavigation } from "@react-navigation/native";
 
-const Promotion = ({ navigation, promoName }) => {
+const Promotion = ({ promoName }) => {
+  const navigation = useNavigation();
+
+  const handleClick = () => {
+    navigation.navigate("ProductsList", {
+      key: promoName,
+    });
+  };
+
   return (
     <View style={styles.promotion}>
-      <Pressable>
+      <Pressable onPress={handleClick}>
         <Text style={styles.promoName}>
           {promoName} <Feather name="arrow-right" size={18} color="black" />
         </Text>

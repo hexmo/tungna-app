@@ -1,7 +1,11 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-const ProductsList = () => {
+const ProductsList = ({ navigation, route }) => {
+  const { key } = route.params;
+
+  navigation.setOptions({ title: key });
+
   return (
     <View>
       <Text>Products List</Text>
