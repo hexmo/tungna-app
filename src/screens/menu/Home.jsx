@@ -4,7 +4,7 @@ import { Searchbar } from "react-native-paper";
 import HomePageCarousel from "../../components/HomePageCarousel";
 import Promotion from "../../components/Promotion";
 
-export default function Home() {
+export default function Home({navigation}) {
   return (
     <View>
       <Searchbar placeholder="Search" style={styles.searchBar} />

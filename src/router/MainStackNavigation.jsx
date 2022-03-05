@@ -8,6 +8,8 @@ import Main from "../router/BottomMenuNavigation";
 import Login from "../screens/auth/Login";
 import SignUp from "../screens/auth/SignUp";
 
+import ProductDetail from "../screens/product/ProductDetail";
+
 const Stack = createNativeStackNavigator();
 
 const MainStackNavigation = () => {
@@ -17,6 +19,11 @@ const MainStackNavigation = () => {
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="SignUp" component={SignUp} />
         <Stack.Screen name="Main" component={Main} />
+        <Stack.Screen
+          name="ProductDetail"
+          component={ProductDetail}
+          options={{ headerShown: true }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
