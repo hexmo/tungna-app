@@ -8,12 +8,12 @@ import homeStudio from "../assets/category-images/home-studio.png";
 
 const categories = () => {
   return [
-    { name: "Guitars", image: guitars },
-    { name: "Drums", image: drums },
-    { name: "Keyboards", image: keyboards },
+    { name: "Guitar", image: guitars },
+    { name: "Drum", image: drums },
+    { name: "Piano & Keyboard", image: keyboards },
     { name: "Ukulele", image: ukulele },
     { name: "Wind Pipes", image: pipes },
-    { name: "Traditional", image: traditional },
+    { name: "Traditional Instruments", image: traditional },
     { name: "Home Studio", image: homeStudio },
   ];
 };
