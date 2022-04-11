@@ -13,7 +13,7 @@ const ProductsList = ({ navigation, route }) => {
     getProductByCategory(key)
       .then((res) => {
         setData(res.data);
-        Alert.alert("Success", JSON.stringify(res.data));
+        // Alert.alert("Success", JSON.stringify(res.data));
       })
       .catch((error) => {
         Alert.alert("Error", JSON.stringify(error));
