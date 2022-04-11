@@ -6,23 +6,27 @@ import GuitarImage from "../../assets/product-mock-images/guitar.jpg";
 
 const productWidth = Dimensions.get("window").width * 0.48;
 
-const Product = () => {
+const Product = ({ name, price, image }) => {
   const navigation = useNavigation();
 
   const handleClick = () => {
     navigation.navigate("ProductDetail", {
-      name: "Acoustic guitar",
-      image: GuitarImage,
-      price: 7600,
+      name: name,
+      image: image,
+      price: price,
     });
   };
 
   return (
     <Card onPress={handleClick} style={{ width: productWidth, margin: 3 }}>
-      <Card.Cover source={GuitarImage} style={styles.cardImage} />
+      <Card.Cover
+        source={{ uri: image }}
+        style={styles.cardImage}
+        resizeMode="cover"
+      />
       <Card.Content>
-        <Subheading>Acoustic guitar</Subheading>
-        <Paragraph>Rs. 7600</Paragraph>
+        <Subheading>{name}</Subheading>
+        <Paragraph>Rs. {price}</Paragraph>
       </Card.Content>
     </Card>
   );

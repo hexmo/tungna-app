@@ -38,7 +38,13 @@ const ProductsList = ({ navigation, route }) => {
       ) : (
         <FlatList
           data={data}
-          renderItem={({ item, index, separators }) => <Product />}
+          renderItem={({ item, index, separators }) => (
+            <Product
+              name={item.name}
+              price={item.price}
+              image={item.images[0]}
+            />
+          )}
           numColumns={2}
         />
       )}
