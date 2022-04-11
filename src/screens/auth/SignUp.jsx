@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View, Image, Alert, Pressable } from "react-native";
 import { TextInput, Button } from "react-native-paper";
 import { signUp } from "../../services/authServices";
-
 import logo from "../../../assets/logo.png";
 
 let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
@@ -33,7 +32,10 @@ const SignUp = ({ navigation }) => {
           // navigation.replace("Login");
         })
         .catch((error) => {
-          Alert.alert("Error", JSON.stringify(error.response.data));
+          Alert.alert(
+            "Error",
+            JSON.stringify(error.response.data.errors.full_messages.join(", "))
+          );
         });
 
       setLoading(false);
