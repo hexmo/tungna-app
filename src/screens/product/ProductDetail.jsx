@@ -62,18 +62,21 @@ const ProductDetail = ({ navigation, route }) => {
         <View style={styles.detailsSection}>
           <Title>{name}</Title>
           <Subheading>Rs. {price}</Subheading>
-          <Text
-            style={{
-              marginVertical: 5,
-              padding: 5,
-              paddingHorizontal: 10,
-              backgroundColor: "#111",
-              color: "#fff",
-              borderRadius: 4,
-            }}
-          >
-            Brand: {product.brand.toUpperCase()}
-          </Text>
+          {/* https://stackoverflow.com/questions/38233789/react-native-view-auto-width-by-text-inside */}
+          <View style={{ alignItems: "baseline" }}>
+            <Text
+              style={{
+                marginVertical: 2,
+                padding: 2,
+                paddingHorizontal: 10,
+                backgroundColor: "#111",
+                color: "#fff",
+                borderRadius: 4,
+              }}
+            >
+              Brand: {product.brand.toUpperCase()}
+            </Text>
+          </View>
           {/* <Paragraph>{JSON.stringify(product)}</Paragraph> */}
           <Paragraph>{product.description}</Paragraph>
         </View>
