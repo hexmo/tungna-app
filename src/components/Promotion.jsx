@@ -59,6 +59,7 @@ const Promotion = ({ promoName }) => {
         {data.map((item) => (
           <Product
             key={item.id}
+            productId={item.id}
             name={item.name}
             price={item.price}
             image={item.image}

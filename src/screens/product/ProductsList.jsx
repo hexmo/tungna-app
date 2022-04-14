@@ -40,6 +40,7 @@ const ProductsList = ({ navigation, route }) => {
           data={data}
           renderItem={({ item, index, separators }) => (
             <Product
+              productId={item.id}
               name={item.name}
               price={item.price}
               image={item.image}

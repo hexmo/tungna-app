@@ -6,13 +6,13 @@ import GuitarImage from "../../assets/product-mock-images/guitar.jpg";
 
 const productWidth = Dimensions.get("window").width * 0.48;
 
-const Product = ({ name, price, image }) => {
+const Product = ({ productId, name, price, image }) => {
   const navigation = useNavigation();
 
   const handleClick = () => {
     navigation.navigate("ProductDetail", {
+      productId: productId,
       name: name,
-      image: image,
       price: price,
     });
   };

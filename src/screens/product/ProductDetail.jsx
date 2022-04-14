@@ -6,19 +6,32 @@ import {
   Dimensions,
   Alert,
 } from "react-native";
-
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { SliderBox } from "react-native-image-slider-box";
-
 import { Button, Subheading, Title, Paragraph } from "react-native-paper";
+import { getProductById } from "../../services/productServices";
 
 const ProductDetail = ({ navigation, route }) => {
-  const { name, image, price } = route.params;
-
+  const { productId, name, price } = route.params;
   const deviceWidth = Dimensions.get("window").width;
+
+  const [loading, setLoading] = useState(true);
+  const [product, setProduct] = useState();
 
   useEffect(() => {
     navigation.setOptions({ title: name });
+  }, []);
+
+  useEffect(() => {
+    getProductById(productId)
+      .then((res) => {
+        setProduct(res.data);
+        // Alert.alert("Success", JSON.stringify(res.data));
+      })
+      .catch((error) => {
+        Alert.alert("Error", JSON.stringify(error.response));
+      })
+      .finally(() => setLoading(false));
   }, []);
 
   const addToCartHandler = () => {
@@ -32,11 +45,15 @@ const ProductDetail = ({ navigation, route }) => {
     ]);
   };
 
+  if (loading) {
+    return <></>;
+  }
+
   return (
     <>
       <ScrollView>
         <SliderBox
-          images={[image, image, image]}
+          images={product.images}
           dotColor="#e49314"
           circleLoop
           sliderBoxHeight={deviceWidth}
@@ -45,24 +62,20 @@ const ProductDetail = ({ navigation, route }) => {
         <View style={styles.detailsSection}>
           <Title>{name}</Title>
           <Subheading>Rs. {price}</Subheading>
-          <Paragraph>
-            {`
-‣ Brand: Mantra
-‣ Color: Natural
-‣ Size:40 inch
-‣ Back Material Type: Sapele
-‣ Fretboard Material Type: Rosewood
-‣ Neck Material Type: Sapele
-‣ Top Material Type : Sape
-        
-It?s a basic guitar model which is inspired by the theory of karma. It means your action driven by intention which lead to future results.
-            
-This is the model which gives them the sense of starting with a clean heart to learn the guitar and if your karma is good then you will learn a lot. 
-            
-With good karma playing this guitar, good will come to you.
-            
-This is best guitar for the beginners who s planning to startthe guitar lesson and for students learning guitar.`}
-          </Paragraph>
+          <Text
+            style={{
+              marginVertical: 5,
+              padding: 5,
+              paddingHorizontal: 10,
+              backgroundColor: "#111",
+              color: "#fff",
+              borderRadius: 4,
+            }}
+          >
+            Brand: {product.brand.toUpperCase()}
+          </Text>
+          {/* <Paragraph>{JSON.stringify(product)}</Paragraph> */}
+          <Paragraph>{product.description}</Paragraph>
         </View>
       </ScrollView>
       <Button
