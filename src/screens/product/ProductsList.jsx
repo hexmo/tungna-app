@@ -42,7 +42,7 @@ const ProductsList = ({ navigation, route }) => {
             <Product
               name={item.name}
               price={item.price}
-              image={item.images[0]}
+              image={item.image}
             />
           )}
           numColumns={2}
