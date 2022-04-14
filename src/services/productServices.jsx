@@ -7,6 +7,14 @@ const getProductByCategory = (category) =>
     },
   });
 
+const getHomeProductByCategory = (category) =>
+  axios.get("/products", {
+    params: {
+      category: category,
+      page: "5",
+    },
+  });
+
 const category = {
   guitar: "Guitar",
   drum: "Drum",
@@ -17,4 +25,4 @@ const category = {
   home_studio: "Home Studio",
 };
 
-export { getProductByCategory };
+export { getProductByCategory, getHomeProductByCategory };
