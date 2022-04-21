@@ -7,4 +7,6 @@ const addProductToCart = (id) =>
 
 const removeProductFromCart = (id) => axios.delete(`/cart_items/${id}`);
 
-export { addProductToCart, removeProductFromCart };
+const getCartItems = () => axios.get(`/cart_items`);
+
+export { addProductToCart, removeProductFromCart, getCartItems };
