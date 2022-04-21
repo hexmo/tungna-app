@@ -1,6 +1,7 @@
 import { Provider as PaperProvider, DefaultTheme } from "react-native-paper";
 import { StyleSheet, View, StatusBar } from "react-native";
 import MainStackNavigator from "./src/router/MainStackNavigation";
+import Toast from "react-native-toast-message";
 
 export default function App() {
   return (
@@ -8,6 +9,7 @@ export default function App() {
       <View style={styles.container}>
         <StatusBar style="light" backgroundColor="#e49314" />
         <MainStackNavigator />
+        <Toast />
       </View>
     </PaperProvider>
   );

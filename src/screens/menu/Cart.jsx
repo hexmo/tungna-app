@@ -14,8 +14,12 @@ import CartItem from "../../components/CartItem";
 import { Button } from "react-native-paper";
 import { getCartPrice } from "../../services/cartServices";
 import { KhatiSdk } from "rn-all-nepal-payment";
+import { checkOutCart } from "../../services/cartServices";
+import Toast from "react-native-toast-message";
+import { useNavigation } from "@react-navigation/native";
 
 const Cart = () => {
+  const navigation = useNavigation();
   const [isVisible, setIsVisible] = useState(false);
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
@@ -70,7 +74,19 @@ const Cart = () => {
     if (resp.event === "CLOSED") {
       // handle closed action
     } else if (resp.event === "SUCCESS") {
-      console.log({ data: resp.data });
+      // console.log({ data: resp.data });
+      checkOutCart(deliveryLocation)
+        .then((res) => {
+          Toast.show({
+            type: "success",
+            text1: "Payment Successfull",
+          });
+          navigation.navigate("Home");
+        })
+        .catch((error) => {
+          Alert.alert("Failure", "Please try again later.");
+          // Alert.alert("Error", JSON.stringify(error.respose));
+        });
     } else if (resp.event === "ERROR") {
       Alert.alert(
         "Payment Error",
@@ -129,7 +145,7 @@ const Cart = () => {
             Khalti Checkout | Rs. {price}
           </Button>
           <KhatiSdk
-            amount={price * 100} // Number in paisa
+            amount={price} // Number in paisa
             isVisible={isVisible} // Bool to show model
             paymentPreference={[
               // Array of services needed from Khalti

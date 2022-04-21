@@ -11,4 +11,15 @@ const getCartItems = () => axios.get(`/cart_items`);
 
 const getCartPrice = () => axios.get("/cart_items_price");
 
-export { addProductToCart, removeProductFromCart, getCartItems, getCartPrice };
+const checkOutCart = (deliveryLocation) =>
+  axios.post("/orders", {
+    delivery_location: deliveryLocation,
+  });
+
+export {
+  addProductToCart,
+  removeProductFromCart,
+  getCartItems,
+  getCartPrice,
+  checkOutCart,
+};
