@@ -3,8 +3,11 @@ import React, { useState, useEffect } from "react";
 import { Avatar } from "react-native-paper";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { getProductById } from "../services/productServices";
+import { removeProductFromCart } from "../services/cartServices";
+import { useNavigation } from "@react-navigation/native";
 
 const CartItem = ({ cartId, productId }) => {
+  const navigation = useNavigation();
   const [loading, setLoading] = useState(true);
   const [product, setProduct] = useState();
 
@@ -12,7 +15,7 @@ const CartItem = ({ cartId, productId }) => {
     getProductById(productId)
       .then((res) => {
         setProduct(res.data);
-        Alert.alert("Success", JSON.stringify(res.data));
+        // Alert.alert("Success", JSON.stringify(res.data));
       })
       .catch((error) => {
         // Alert.alert("Error", JSON.stringify(error.response));
@@ -20,8 +23,32 @@ const CartItem = ({ cartId, productId }) => {
       .finally(() => setLoading(false));
   }, []);
 
+  // handlers
   const removeProductFromCartHandler = () => {
-    console.log("Remove items pressed.");
+    Alert.alert(
+      "Confirmation Alert",
+      "Do you really want to remove this item to cart?",
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel",
+        },
+        {
+          text: "OK",
+          onPress: () => {
+            removeProductFromCart(cartId)
+              .then((response) => {
+                navigation.navigate("Home");
+              })
+              .catch((error) => {
+                Alert.alert("Failure", "Please try again later.");
+                // Alert.alert("Error", JSON.stringify(error.respose));
+              });
+          },
+        },
+      ]
+    );
   };
 
   if (loading) {

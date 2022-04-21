@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Alert, Image } from "react-native";
+import { StyleSheet, Text, View, Alert, Image, ScrollView } from "react-native";
 import { useEffect, useState } from "react";
 import { getCartItems } from "../../services/cartServices";
 import CartItem from "../../components/CartItem";
@@ -41,9 +41,16 @@ const Cart = () => {
 
   return (
     <View style={{ width: "100%" }}>
-      {data.map((item) => (
-        <CartItem key={item.id} productId={item.product_id} cartId={item.id} />
-      ))}
+      <ScrollView>
+        {data.map((item) => (
+          <CartItem
+            key={item.id}
+            productId={item.product_id}
+            cartId={item.id}
+          />
+        ))}
+      </ScrollView>
+      
     </View>
   );
 };
