@@ -16,10 +16,13 @@ const checkOutCart = (deliveryLocation) =>
     delivery_location: deliveryLocation,
   });
 
+const getOrders = () => axios.get("/orders");
+
 export {
   addProductToCart,
   removeProductFromCart,
   getCartItems,
   getCartPrice,
   checkOutCart,
+  getOrders,
 };
