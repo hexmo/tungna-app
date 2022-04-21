@@ -7,7 +7,6 @@ import Promotion from "../../components/Promotion";
 export default function Home({ navigation }) {
   return (
     <View>
-      <Searchbar placeholder="Search" style={styles.searchBar} />
       <ScrollView style={styles.scroll}>
         <HomePageCarousel />
         <Promotion promoName={"Guitar"} />
@@ -23,8 +22,5 @@ export default function Home({ navigation }) {
 const styles = StyleSheet.create({
   scroll: {
     marginBottom: 60,
-  },
-  searchBar: {
-    margin: 10,
   },
 });
