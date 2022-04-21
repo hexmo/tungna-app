@@ -10,6 +10,7 @@ import { useState, useEffect } from "react";
 import { SliderBox } from "react-native-image-slider-box";
 import { Button, Subheading, Title, Paragraph } from "react-native-paper";
 import { getProductById } from "../../services/productServices";
+import { addProductToCart } from "../../services/cartServices";
 
 const ProductDetail = ({ navigation, route }) => {
   const { productId, name, price } = route.params;
@@ -41,7 +42,20 @@ const ProductDetail = ({ navigation, route }) => {
         onPress: () => console.log("Cancel Pressed"),
         style: "cancel",
       },
-      { text: "OK", onPress: () => console.log("OK Pressed") },
+      {
+        text: "OK",
+        onPress: () => {
+          addProductToCart(productId)
+            .then((response) => {
+              // Alert.alert("Success", JSON.stringify(response.data));
+              Alert.alert("Success", "Product successfully added to cart.");
+            })
+            .catch((error) => {
+              Alert.alert("Failure", "Please try again later.");
+              // Alert.alert("Error", JSON.stringify(error.respose));
+            });
+        },
+      },
     ]);
   };
 
