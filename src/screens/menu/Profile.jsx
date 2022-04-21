@@ -1,11 +1,12 @@
-import { StyleSheet, Text, View } from 'react-native';
-import React from 'react';
+import { StyleSheet, Text, View } from "react-native";
+import React from "react";
+import ProfileCard from "../../components/ProfileCard";
 
 const Profile = () => {
   return (
-    <View>
-      <Text>This is profile page</Text>
-    </View>
+    <>
+      <ProfileCard />
+    </>
   );
 };
 

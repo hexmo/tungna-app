@@ -49,6 +49,7 @@ const BottomMenuNavigation = () => {
           tabBarIcon: ({ color, size }) => (
             <Feather name="user" color={color} size={size} />
           ),
+          unmountOnBlur: true,
         }}
       />
     </Tab.Navigator>
