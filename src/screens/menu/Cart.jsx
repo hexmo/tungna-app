@@ -6,6 +6,7 @@ import {
   Image,
   ScrollView,
   SafeAreaView,
+  TextInput,
 } from "react-native";
 import { useEffect, useState } from "react";
 import { getCartItems } from "../../services/cartServices";
@@ -19,6 +20,7 @@ const Cart = () => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [price, setPrice] = useState(0);
+  const [deliveryLocation, setDeliveryLocation] = useState("");
 
   useEffect(() => {
     getCartItems()
@@ -43,6 +45,23 @@ const Cart = () => {
   }, []);
 
   // handlers
+  const initiatePaymentHandler = () => {
+    if (deliveryLocation === "") {
+      Alert.alert("Validation error", "Delivery location can't be empty.");
+      return;
+    }
+
+    if (deliveryLocation.length < 10) {
+      Alert.alert(
+        "Validation error",
+        "Delivery location should be more than 10 characters long."
+      );
+      return;
+    }
+
+    setIsVisible(true);
+  };
+
   const onPaymentComplete = (data) => {
     setIsVisible(false);
     const str = data.nativeEvent.data;
@@ -51,9 +70,12 @@ const Cart = () => {
     if (resp.event === "CLOSED") {
       // handle closed action
     } else if (resp.event === "SUCCESS") {
-      console.log({ data: resp.data })
+      console.log({ data: resp.data });
     } else if (resp.event === "ERROR") {
-      Alert.alert("Payment Error", "Something went wrong please try again later.")
+      Alert.alert(
+        "Payment Error",
+        "Something went wrong please try again later."
+      );
     }
     return;
   };
@@ -90,17 +112,24 @@ const Cart = () => {
         ))}
       </ScrollView>
       {price !== 0 ? (
-        <SafeAreaView>
+        <SafeAreaView style={styles.checkoutCard}>
+          <TextInput
+            style={{ padding: 5 }}
+            onChangeText={(location) => setDeliveryLocation(location)}
+            value={deliveryLocation}
+            placeholder="Enter delivery location..."
+          />
           <Button
             mode="contained"
             style={styles.button}
             uppercase={false}
-            onPress={() => setIsVisible(true)}
+            inlineImageLeft="search_icon"
+            onPress={initiatePaymentHandler}
           >
             Khalti Checkout | Rs. {price}
           </Button>
           <KhatiSdk
-            amount={price} // Number in paisa
+            amount={price * 100} // Number in paisa
             isVisible={isVisible} // Bool to show model
             paymentPreference={[
               // Array of services needed from Khalti
@@ -124,8 +153,14 @@ export default Cart;
 
 const styles = StyleSheet.create({
   button: {
-    margin: 5,
-    marginHorizontal: 20,
     backgroundColor: "#5D2E8E",
+    marginTop: 5,
+  },
+  checkoutCard: {
+    backgroundColor: "#fff",
+    padding: 15,
+    paddingVertical: 5,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
   },
 });
