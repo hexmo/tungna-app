@@ -39,6 +39,7 @@ const BottomMenuNavigation = () => {
           tabBarIcon: ({ color, size }) => (
             <Feather name="shopping-cart" color={color} size={size} />
           ),
+          unmountOnBlur: true,
         }}
       />
       <Tab.Screen
@@ -48,6 +49,7 @@ const BottomMenuNavigation = () => {
           tabBarIcon: ({ color, size }) => (
             <Feather name="user" color={color} size={size} />
           ),
+          unmountOnBlur: true,
         }}
       />
     </Tab.Navigator>

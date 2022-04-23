@@ -1,12 +1,51 @@
-import React from "react";
-import { StyleSheet, Text, View, Image, Pressable } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, Text, View, Image, Pressable, Alert } from "react-native";
 import { TextInput, Button } from "react-native-paper";
-
+import { login } from "../../services/authServices";
 import logo from "../../../assets/logo.png";
+import { removeData } from "../../services/axiosInstance";
+
+let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
 
 const Login = ({ navigation }) => {
+  const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const handleSignInPressed = () => {
-    navigation.navigate("Main");
+    if (validateEmail() && validatePassword()) {
+      setLoading(true);
+      login(email, password)
+        .then((res) => {
+          // Alert.alert("Success", JSON.stringify(res.data));
+          navigation.replace("Main");
+        })
+        .catch((error) => {
+          Alert.alert("Error", JSON.stringify(error.response.data.errors[0]));
+          removeData();
+        });
+
+      setLoading(false);
+    }
+  };
+
+  const validateEmail = () => {
+    if (email == "") {
+      Alert.alert("Email can't be blank");
+      return false;
+    } else if (reg.test(email) === false) {
+      Alert.alert("Invalid email format.");
+      return false;
+    }
+    return true;
+  };
+
+  const validatePassword = () => {
+    if (password == "") {
+      Alert.alert("Password can't be blank.");
+      return false;
+    }
+    return true;
   };
 
   return (
@@ -17,6 +56,9 @@ const Login = ({ navigation }) => {
         style={styles.input}
         label="Email"
         mode="outlined"
+        keyboardType="email-address"
+        defaultValue={email}
+        onChangeText={(email) => setEmail(email)}
         left={<TextInput.Icon name="email" />}
       />
 
@@ -24,6 +66,8 @@ const Login = ({ navigation }) => {
         style={styles.input}
         label="Password"
         mode="outlined"
+        defaultValue={password}
+        onChangeText={(password) => setPassword(password)}
         left={<TextInput.Icon name="lock" />}
         secureTextEntry
       />
@@ -32,8 +76,9 @@ const Login = ({ navigation }) => {
         style={styles.button}
         mode="contained"
         onPress={handleSignInPressed}
+        disabled={loading}
       >
-        Sign In
+        {loading ? "Loading" : "Sign In"}
       </Button>
 
       <Pressable onPress={() => navigation.navigate("SignUp")}>
