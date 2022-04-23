@@ -61,7 +61,7 @@ const CartItem = ({ cartId, productId }) => {
         <Avatar.Image size={60} source={{ uri: product.images[0] }} />
         <View style={{ marginLeft: 10 }}>
           <Text style={{ fontSize: 18 }} numberOfLines={1}>
-            {product.name}
+            {`${product.name.slice(0, 13)}....`}
           </Text>
           <Text>Rs. {product.price}/-</Text>
         </View>
