@@ -12,7 +12,7 @@ const categories = () => {
     { name: "Drum", image: drums },
     { name: "Piano & Keyboard", image: keyboards },
     { name: "Ukulele", image: ukulele },
-    { name: "Wind Pipes", image: pipes },
+    { name: "Wind pipes", image: pipes },
     { name: "Traditional Instruments", image: traditional },
     { name: "Home Studio", image: homeStudio },
   ];
